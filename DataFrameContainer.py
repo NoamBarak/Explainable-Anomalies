@@ -1,13 +1,11 @@
 import pandas as pd
-import math
-from functools import lru_cache
 
 class DataFrameContainer:
     def __init__(self):
-        data = {
-            'Column1': [1, 2],
-            'Column2': [4, 5],
-        }
+        df = pd.read_csv('house_prices_train.csv')
+        selected_columns = ['MSSubClass', 'LotArea', 'OverallQual', 'OverallCond',
+                            'YearBuilt', 'YearRemodAdd', 'GarageCars', 'SalePrice']
+        data = df[selected_columns]
 
         data = pd.DataFrame(data)
         self.data = data
@@ -35,28 +33,3 @@ class DataFrameContainer:
         self.prob_cache[cache_key] = prob   # Store the calculated probability in the cache
 
         return prob
-
-    def calc_row_entropy(self, given_row):
-        # Check if the entropy for this row is already cached
-        row_key = tuple(given_row.items())
-        if row_key in self.entropy_cache:
-            return self.entropy_cache[row_key]
-
-        res = 0
-        for col in self.df:
-            cur_prob = self.calc_prob_of_val(col, given_row[col])
-            res = res + (cur_prob * math.log(cur_prob, 2))
-
-        self.entropy_cache[row_key] = -res  # Store the calculated entropy in the cache
-        return -res
-
-
-
-
-
-
-
-
-
-
-
