@@ -1,0 +1,86 @@
+Subset 1:
+Similarity Value: 10.78702924812944
+Subset DataFrame:
+   YearRemodAdd  YearBuilt  MSSubClass  GarageCars  OverallQual
+2          2002       2001          60           2            7
+4          2000       2000          60           3            8
+1          1976       1976          20           2            6
+--------------------------------------------------
+Subset 2:
+Similarity Value: 13.490737563232042
+Subset DataFrame:
+   YearRemodAdd  GarageCars  YearBuilt  MSSubClass
+4          2000           3       2000          60
+1          1976           2       1976          20
+0          2003           2       2003          60
+--------------------------------------------------
+Subset 3:
+Similarity Value: 21.388782106515556
+Subset DataFrame:
+   YearBuilt  YearRemodAdd  MSSubClass  OverallCond  GarageCars
+4       2000          2000          60            5           3
+1       1976          1976          20            8           2
+3       1915          1970          70            5           3
+2       2001          2002          60            5           2
+--------------------------------------------------
+Subset 4:
+Similarity Value: 24.660190591315388
+Subset DataFrame:
+   YearRemodAdd  YearBuilt  GarageCars  OverallQual
+4          2000       2000           3            8
+3          1970       1915           3            7
+1          1976       1976           2            6
+2          2002       2001           2            7
+--------------------------------------------------
+Subset 5:
+Similarity Value: 24.66652590049924
+Subset DataFrame:
+   YearRemodAdd  GarageCars  OverallQual  YearBuilt
+1          1976           2            6       1976
+2          2002           2            7       2001
+0          2003           2            7       2003
+4          2000           3            8       2000
+3          1970           3            7       1915
+--------------------------------------------------
+Subset 6:
+Similarity Value: 24.66652590049924
+Subset DataFrame:
+   OverallCond  GarageCars  YearBuilt  MSSubClass
+3            5           3       1915          70
+2            5           2       2001          60
+1            8           2       1976          20
+0            5           2       2003          60
+--------------------------------------------------
+Subset 7:
+Similarity Value: 655.1366574997921
+Subset DataFrame:
+   OverallCond  LotArea  GarageCars  MSSubClass  OverallQual
+0            5     8450           2          60            7
+3            5     9550           3          70            7
+2            5    11250           2          60            7
+--------------------------------------------------
+Subset 8:
+Similarity Value: 790.96186170173
+Subset DataFrame:
+   OverallQual  OverallCond  YearBuilt  GarageCars  LotArea  YearRemodAdd
+4            8            5       2000           3    14260          2000
+1            6            8       1976           2     9600          1976
+3            7            5       1915           3     9550          1970
+0            7            5       2003           2     8450          2003
+--------------------------------------------------
+Subset 9:
+Similarity Value: 822.1947944374253
+Subset DataFrame:
+   GarageCars  OverallQual  YearBuilt  MSSubClass  LotArea
+2           2            7       2001          60    11250
+0           2            7       2003          60     8450
+4           3            8       2000          60    14260
+--------------------------------------------------
+Subset 10:
+Similarity Value: 1107.4529617550354
+Subset DataFrame:
+   YearBuilt  LotArea  OverallQual  GarageCars
+1       1976     9600            6           2
+4       2000    14260            8           3
+0       2003     8450            7           2
+--------------------------------------------------

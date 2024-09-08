@@ -1,0 +1,96 @@
+Subset 1:
+Similarity Value: 0.82915619758885
+Subset DataFrame:
+   YearBuilt  MSSubClass  YearRemodAdd  OverallQual
+4       2000          60          2000            8
+0       2003          60          2003            7
+2       2001          60          2002            7
+--------------------------------------------------
+Subset 2:
+Similarity Value: 21.388782106515556
+Subset DataFrame:
+   OverallQual  MSSubClass  YearRemodAdd  OverallCond  YearBuilt
+2            7          60          2002            5       2001
+3            7          70          1970            5       1915
+1            6          20          1976            8       1976
+4            8          60          2000            5       2000
+--------------------------------------------------
+Subset 3:
+Similarity Value: 24.669059568617527
+Subset DataFrame:
+   OverallCond  YearBuilt  OverallQual  MSSubClass
+3            5       1915            7          70
+1            8       1976            6          20
+4            5       2000            8          60
+0            5       2003            7          60
+2            5       2001            7          60
+--------------------------------------------------
+Subset 4:
+Similarity Value: 547.4251230132961
+Subset DataFrame:
+   OverallQual  OverallCond  GarageCars  ...  LotArea  MSSubClass  YearRemodAdd
+4            8            5           3  ...    14260          60          2000
+2            7            5           2  ...    11250          60          2002
+3            7            5           3  ...     9550          70          1970
+1            6            8           2  ...     9600          20          1976
+
+[4 rows x 7 columns]
+--------------------------------------------------
+Subset 5:
+Similarity Value: 587.2820829022108
+Subset DataFrame:
+   LotArea  YearBuilt  GarageCars  ...  MSSubClass  OverallQual  YearRemodAdd
+2    11250       2001           2  ...          60            7          2002
+4    14260       2000           3  ...          60            8          2000
+0     8450       2003           2  ...          60            7          2003
+
+[3 rows x 7 columns]
+--------------------------------------------------
+Subset 6:
+Similarity Value: 822.1948917379626
+Subset DataFrame:
+   YearRemodAdd  LotArea  OverallCond  YearBuilt  OverallQual
+2          2002    11250            5       2001            7
+0          2003     8450            5       2003            7
+4          2000    14260            5       2000            8
+--------------------------------------------------
+Subset 7:
+Similarity Value: 1186.2311905779582
+Subset DataFrame:
+   MSSubClass  OverallCond  GarageCars  LotArea
+0          60            5           2     8450
+3          70            5           3     9550
+2          60            5           2    11250
+4          60            5           3    14260
+1          20            8           2     9600
+--------------------------------------------------
+Subset 8:
+Similarity Value: 1186.2758690540745
+Subset DataFrame:
+   OverallQual  LotArea  YearRemodAdd  MSSubClass
+0            7     8450          2003          60
+2            7    11250          2002          60
+4            8    14260          2000          60
+3            7     9550          1970          70
+1            6     9600          1976          20
+--------------------------------------------------
+Subset 9:
+Similarity Value: 3840.8782198866966
+Subset DataFrame:
+   LotArea  OverallQual  SalePrice  ...  MSSubClass  YearRemodAdd  GarageCars
+4    14260            8     250000  ...          60          2000           3
+0     8450            7     208500  ...          60          2003           2
+2    11250            7     223500  ...          60          2002           2
+
+[3 rows x 8 columns]
+--------------------------------------------------
+Subset 10:
+Similarity Value: 5589.562561149128
+Subset DataFrame:
+   SalePrice  GarageCars  MSSubClass  ...  LotArea  OverallQual  YearRemodAdd
+1     181500           2          20  ...     9600            6          1976
+2     223500           2          60  ...    11250            7          2002
+0     208500           2          60  ...     8450            7          2003
+
+[3 rows x 8 columns]
+--------------------------------------------------
