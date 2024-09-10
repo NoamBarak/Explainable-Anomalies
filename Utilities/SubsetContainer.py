@@ -1,5 +1,7 @@
 import numpy as np
 import math
+from scipy.spatial import distance
+
 
 
 class SubsetContainer:
