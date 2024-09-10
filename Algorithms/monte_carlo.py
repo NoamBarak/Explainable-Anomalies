@@ -24,6 +24,7 @@ def get_sub_dfs(df, anomaly, top_n=10, num_samples=1000):
     rows = list(range(df.shape[0]))  # List of row indices
     cols = list(df.columns)  # List of column names
     top_subsets = []  # List to store the top N subsets
+    seen_combinations = set()  # Set to keep track of processed combinations
 
     for i in range(num_samples):
         current_time = datetime.now().strftime("%H:%M:%S")
@@ -34,8 +35,15 @@ def get_sub_dfs(df, anomaly, top_n=10, num_samples=1000):
         c = random.randint(util.MIN_COLS_AMOUNT, min(util.MAX_COLS_AMOUNT, len(cols)))
 
         # Randomly sample a combination of rows and columns
-        row_comb = random.sample(rows, r)
-        col_comb = random.sample(cols, c)
+        row_comb = tuple(sorted(random.sample(rows, r)))  # Use tuple to make it hashable
+        col_comb = tuple(sorted(random.sample(cols, c)))  # Use tuple to make it hashable
+
+        # Skip already seen combinations
+        if (row_comb, col_comb) in seen_combinations:
+            continue
+
+        # Mark the combination as seen
+        seen_combinations.add((row_comb, col_comb))
 
         # Create the sub-DataFrame
         sub_df = df.iloc[list(row_comb), list(df.columns.get_indexer(col_comb))]
@@ -45,16 +53,17 @@ def get_sub_dfs(df, anomaly, top_n=10, num_samples=1000):
         if all((sub_df[col] == anomaly[col]).all() for col in col_comb):
             continue  # Skip this subset
 
-        euclidian_distance = subset_container.get_euclidian_distance()
+        # Calculate the Euclidean distance
+        euclidean_distance = subset_container.get_euclidian_distance()
 
         # If we have fewer than top_n subsets, just add the new one
         if len(top_subsets) < top_n:
-            top_subsets.append((euclidian_distance, subset_container))
+            top_subsets.append((euclidean_distance, subset_container))
             top_subsets.sort(key=lambda x: x[0])  # Sort by similarity value
         else:
             # If the new subset has a lower similarity value, replace the worst one
-            if euclidian_distance < top_subsets[-1][0]:
-                top_subsets[-1] = (euclidian_distance, subset_container)
+            if euclidean_distance < top_subsets[-1][0]:
+                top_subsets[-1] = (euclidean_distance, subset_container)
                 top_subsets.sort(key=lambda x: x[0])  # Re-sort the list
 
     return [subset for _, subset in top_subsets]
