@@ -43,7 +43,7 @@ print(f"Anomaly:{anomaly}\n\n")
 best_subsets["Brute Force"] = brute_force.get_sub_dfs(df=data, anomaly=anomaly, top_n=constants.SUBSETS_AMOUNT)
 num_samples = dataframe_container.rows_amount * dataframe_container.cols_amount
 best_subsets["Monte Carlo"] = monte_carlo.get_sub_dfs(df=data, anomaly=anomaly, top_n=constants.SUBSETS_AMOUNT, num_samples=num_samples)
-best_subsets["Multi Arm-Bandit"] = mab.get_sub_dfs(df=data, anomaly=anomaly, top_n=constants.SUBSETS_AMOUNT, num_iterations=num_samples)
+best_subsets["Multi Arm-Bandit"] = mab.get_sub_dfs(df=data, anomaly=anomaly, top_n=constants.SUBSETS_AMOUNT, num_samples=num_samples)
 
 print_top_subsets(best_subsets["Brute Force"], "Results/brute_force_top_subsets")
 print_top_subsets(best_subsets["Monte Carlo"], "Results/monte_carlo_top_subsets")
