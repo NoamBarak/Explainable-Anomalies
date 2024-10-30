@@ -1,0 +1,42 @@
+Subset 1:
+Distance:0.3798072478152506
+Similar Features:['MSSubClass', 'LotArea', 'OverallQual', 'OverallCond', 'YearBuilt']
+Different Features:['YearRemodAdd', 'GarageCars', 'SalePrice']
+Subset:    MSSubClass   LotArea  OverallQual  OverallCond  YearBuilt  YearRemodAdd  \
+24    0.000000  0.317167          0.2         1.00   0.576087      0.879310   
+47    0.000000  0.541913          0.8         0.25   0.989130      0.965517   
+51    0.176471  0.158978          0.4         0.50   0.206522      0.000000   
+
+    GarageCars  SalePrice  
+24    0.333333   0.373770  
+47    1.000000   0.687541  
+51    0.666667   0.244262  
+--------------------------------------------------
+Subset 2:
+Distance:0.38763274685933563
+Similar Features:['MSSubClass', 'LotArea', 'OverallQual', 'OverallCond', 'YearBuilt']
+Different Features:['YearRemodAdd', 'GarageCars', 'SalePrice']
+Subset:    MSSubClass   LotArea  OverallQual  OverallCond  YearBuilt  YearRemodAdd  \
+18    0.000000  0.746865          0.2         0.25   0.967391      0.931034   
+47    0.000000  0.541913          0.8         0.25   0.989130      0.965517   
+51    0.176471  0.158978          0.4         0.50   0.206522      0.000000   
+
+    GarageCars  SalePrice  
+18    0.666667   0.390164  
+47    1.000000   0.687541  
+51    0.666667   0.244262  
+--------------------------------------------------
+Subset 3:
+Distance:0.38774261460239806
+Similar Features:['MSSubClass', 'LotArea', 'OverallQual', 'OverallCond', 'YearBuilt']
+Different Features:['YearRemodAdd', 'GarageCars', 'SalePrice']
+Subset:    MSSubClass   LotArea  OverallQual  OverallCond  YearBuilt  YearRemodAdd  \
+38    0.000000  0.291617          0.2         0.75   0.413043      0.982759   
+47    0.000000  0.541913          0.8         0.25   0.989130      0.965517   
+51    0.176471  0.158978          0.4         0.50   0.206522      0.000000   
+
+    GarageCars  SalePrice  
+38    0.333333   0.226230  
+47    1.000000   0.687541  
+51    0.666667   0.244262  
+--------------------------------------------------
