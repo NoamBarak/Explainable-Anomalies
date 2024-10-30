@@ -27,31 +27,28 @@ def get_sub_dfs(df, anomaly, top_n=10, num_samples=1000):
     seen_combinations = set()  # Set to keep track of processed combinations
 
     for i in range(num_samples):
-        current_time = datetime.now().strftime("%H:%M:%S")
-        print(f"Sample {i + 1}/{num_samples}, Current Time: {current_time}")
-
         # Randomly select the number of rows and columns to sample
         r = random.randint(util.MIN_ROWS_AMOUNT, min(util.MAX_ROWS_AMOUNT, len(rows)))
         c = random.randint(util.MIN_COLS_AMOUNT, min(util.MAX_COLS_AMOUNT, len(cols)))
 
         # Randomly sample a combination of rows and columns
         row_comb = tuple(sorted(random.sample(rows, r)))  # Use tuple to make it hashable
-        col_comb = tuple(sorted(random.sample(cols, c)))  # Use tuple to make it hashable
+        # col_comb = tuple(sorted(random.sample(cols, c)))  # Use tuple to make it hashable
 
-        # Skip already seen combinations
-        if (row_comb, col_comb) in seen_combinations:
-            continue
+        # # Skip already seen combinations
+        # if (row_comb, col_comb) in seen_combinations:
+        #     continue
 
         # Mark the combination as seen
-        seen_combinations.add((row_comb, col_comb))
+        # seen_combinations.add((row_comb, col_comb))
 
         # Create the sub-DataFrame
-        sub_df = df.iloc[list(row_comb), list(df.columns.get_indexer(col_comb))]
-        subset_container = SubsetContainer(subset=sub_df, anomaly=anomaly, features=col_comb)
+        sub_df = df.iloc[list(row_comb)]
+        subset_container = SubsetContainer(subset=sub_df, anomaly=anomaly, sim_features_amount=c)
 
         # Check if all selected features are identical to the anomaly's corresponding feature values
-        if all((sub_df[col] == anomaly[col]).all() for col in col_comb):
-            continue  # Skip this subset
+        # if all((sub_df[col] == anomaly[col]).all() for col in col_comb):
+        #     continue  # Skip this subset
 
         # Calculate the Euclidean distance
         euclidean_distance = subset_container.get_euclidian_distance()
