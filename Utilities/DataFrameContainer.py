@@ -3,23 +3,38 @@ import os
 from Utilities import Constants as constants
 
 from sklearn.ensemble import IsolationForest
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import StandardScaler
+
 from sklearn.manifold import TSNE
 import matplotlib.pyplot as plt
 
 
 class DataFrameContainer:
     def __init__(self):
-        file_path = constants.PROJECT_PATH + "\Data\house_prices_test.csv"
+        # file_path = constants.PROJECT_PATH + "\Data\house_prices_train.csv"
+        file_path = constants.PROJECT_PATH + "\Data\AmesHousing.csv"
         df = pd.read_csv(file_path)
+        df = df.sample(n=50, random_state=42)
         selected_columns = constants.COLUMNS     # Select specific columns from the DataFrame
         self.original_df = pd.DataFrame(df[selected_columns])
 
-        # Normalize the data
-        self.full_data = (self.original_df - self.original_df.min()) / (self.original_df.max() - self.original_df.min())
+        imputer = SimpleImputer(strategy="median")
+        imputed_data = imputer.fit_transform(self.original_df)
 
-        model = IsolationForest(n_estimators=100, max_samples=0.5,
-                                contamination='auto', max_features=1.0, bootstrap=False, n_jobs=None,
-                                verbose=1, random_state=2020)
+        self.original_df = pd.DataFrame(imputed_data, columns=self.original_df.columns)
+
+
+        # Normalize the data
+        # self.full_data = (self.original_df - self.original_df.min()) / (self.original_df.max() - self.original_df.min())
+
+        scaler = StandardScaler()
+        self.full_data = scaler.fit_transform(self.original_df)
+        self.full_data = pd.DataFrame(self.full_data, columns=selected_columns)
+
+        model = IsolationForest(n_estimators=100, max_samples=0.7,
+                                contamination=0.05, max_features=1.0, bootstrap=False, n_jobs=-1,
+                                verbose=0, random_state=2020)
         model.fit(self.full_data)
         predictions = model.predict(self.full_data)
 

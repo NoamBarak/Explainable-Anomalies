@@ -8,8 +8,8 @@ class SubsetContainer:
         self.subset = subset
         self.all_features = constans.COLUMNS
         self.sim_features, self.diff_features = self.sort_features_by_similarity(anomaly, sim_features_amount)
-        self.distance = self.calc_explanation_score(anomaly)
-        # self.distance = self.calc_euclidian_distance(anomaly, self.all_features)
+        # self.distance = self.calc_explanation_score(anomaly)
+        self.distance = self.calc_euclidian_distance(anomaly, self.all_features)
 
     def get_subset(self):
         return self.subset
@@ -41,12 +41,26 @@ class SubsetContainer:
         Definition 1 (Euclidean distance between a vector and a matrix)
         Euclidean distances between D_prime and a sample based on the specified features (features).
         """
+        # if sample is None:
+        #     return None
+        # features = list(features)
+        # subset_mean = np.mean(self.subset[features], axis=0)
+        # euclidian_distance = 1/(1 + np.linalg.norm(subset_mean - sample))
+        # return euclidian_distance
+
         if sample is None:
-            return None
-        features = list(features)
-        subset_mean = np.mean(self.subset[features], axis=0)
-        euclidian_distance = 1/(1 + np.linalg.norm(subset_mean - sample))
-        return euclidian_distance
+            return None  # Or raise ValueError("Sample cannot be None")
+
+        features = list(features)  # Ensure features is a list
+        subset = self.subset[features].to_numpy()  # Convert to NumPy array if not already
+
+        # Ensure sample is a NumPy array
+        sample = np.asarray(sample)
+
+        # Compute Euclidean distances for all rows
+        distances = np.linalg.norm(subset - sample, axis=1)
+
+        return np.mean(distances)
 
     def calc_explanation_score(self, anomaly):
         """
