@@ -15,7 +15,7 @@ class DataFrameContainer:
         # file_path = constants.PROJECT_PATH + "\Data\house_prices_train.csv"
         file_path = constants.PROJECT_PATH + "\Data\AmesHousing.csv"
         df = pd.read_csv(file_path)
-        df = df.sample(n=50, random_state=42)
+        df = df.sample(n=150, random_state=42)
         selected_columns = constants.COLUMNS     # Select specific columns from the DataFrame
         self.original_df = pd.DataFrame(df[selected_columns])
 

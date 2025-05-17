@@ -1,6 +1,7 @@
 from Utilities.DataFrameContainer import DataFrameContainer
+from Utilities.SubsetContainer import SubsetContainer
 from Utilities import Constants as constants
-from Algorithms import brute_force, monte_carlo, multi_armed_bandit as mab
+from Algorithms import brute_force, monte_carlo, genetic, multi_armed_bandit as mab
 
 import pandas as pd
 import numpy as np
@@ -188,12 +189,12 @@ anomaly_original_row = dataframe_container.original_df.loc[anomaly.index]
 print(f"Anomaly:\n{anomaly_original_row}\n")
 
 # ------------------------------------ Brute Force ------------------------------------
-best_subsets["Brute Force"] = brute_force.get_sub_dfs(df=data, anomaly=anomaly, top_n=constants.SUBSETS_AMOUNT)
-brute_force_counter_examples = best_subsets["Brute Force"][0]
-analyze_counter_examples(counter_examples=brute_force_counter_examples, method_name="Brute Force")
-brute_force_idxs = brute_force_counter_examples.subset.index
-brute_force_original_values_subset = original_data.loc[brute_force_idxs]
-brute_force_original_values_subset.to_csv("Results/Brute Force/Counterexamples", index=False)
+# best_subsets["Brute Force"] = brute_force.get_sub_dfs(df=data, anomaly=anomaly, top_n=constants.SUBSETS_AMOUNT)
+# brute_force_counter_examples = best_subsets["Brute Force"][0]
+# analyze_counter_examples(counter_examples=brute_force_counter_examples, method_name="Brute Force")
+# brute_force_idxs = brute_force_counter_examples.subset.index
+# brute_force_original_values_subset = original_data.loc[brute_force_idxs]
+# brute_force_original_values_subset.to_csv("Results/Brute Force/Counterexamples", index=False)
 
 # ------------------------------------ Monte Carlo ------------------------------------
 # best_subsets["Monte Carlo"] = monte_carlo.get_sub_dfs(df=data, anomaly=anomaly, top_n=constants.SUBSETS_AMOUNT, num_samples=num_samples)
@@ -202,4 +203,15 @@ brute_force_original_values_subset.to_csv("Results/Brute Force/Counterexamples",
 # monte_carlo_idxs = monte_carlo_counter_examples.subset.index
 # monte_carlo_original_values_subset = original_data.loc[monte_carlo_idxs]
 # monte_carlo_original_values_subset.to_csv("Results/Brute Force/Counterexamples", index=False)
-# run_tsne_new(data, anomaly, monte_carlo_counter_examples.subset)
+# run_tsne_new(data, anomaly,
+# monte_carlo_counter_examples.subset)
+
+# ------------------------------------ Genetic Algorithm ------------------------------------
+best_subsets["Genetic"] = genetic.get_sub_dfs(df=data, anomaly=anomaly, top_n=constants.SUBSETS_AMOUNT)
+genetic_counter_examples = best_subsets["Genetic"][0]
+# counter_examples = pd.concat([container.subset for container in best_subsets["Genetic"]], ignore_index=True)
+# genetic_subset_container = SubsetContainer(subset=counter_examples, anomaly=anomaly, sim_features_amount=constants.MAX_COLS_AMOUNT)
+analyze_counter_examples(counter_examples=genetic_counter_examples, method_name="Genetic")
+genetic_idxs = genetic_counter_examples.subset.index
+genetic_original_values_subset = original_data.loc[genetic_idxs]
+genetic_original_values_subset.to_csv("Results/Genetic/Counterexamples", index=False)
